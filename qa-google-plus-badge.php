@@ -55,7 +55,7 @@
 			$saved=false;
 			
 			if (qa_clicked('gp_badge_save_btn')) {	
-                    qa_opt('ami_show_gp_badge' ,           qa_post_text('ami_show_gp_badge'));
+                    qa_opt('ami_show_gp_badge' ,           !!qa_post_text('ami_show_gp_badge'));
                     qa_opt('ami_gp_badge_url' ,            qa_post_text('ami_gp_badge_url'));
                     qa_opt('ami_gp_badge_type' ,           qa_post_text('ami_gp_badge_type'));
                     qa_opt('ami_gp_badge_layout' ,         qa_post_text('ami_gp_badge_layout'));
@@ -210,7 +210,7 @@
             }
 
             if (!$has_error) {
-                if ($show_gp_badge) {
+                if (!!$show_gp_badge) {
                    $themeobject->output($this->get_google_plus_badge($widget_opt));
                 }
                 
