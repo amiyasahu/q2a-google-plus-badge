@@ -65,6 +65,8 @@
                     qa_opt('ami_gp_badge_show_owners' ,    qa_post_text('ami_gp_badge_show_owners'));
                     qa_opt('ami_gp_badge_showtagline' ,    qa_post_text('ami_gp_badge_showtagline'));
                     qa_opt('ami_gp_badge_width' ,          qa_post_text('ami_gp_badge_width'));
+                    qa_opt('ami_show_gp_badge_header' ,    qa_post_text('ami_show_gp_badge_header'));
+                    qa_opt('ami_gp_badge_costum_header' ,  qa_post_text('ami_gp_badge_costum_header'));
         			$saved=true;
 			}
 			qa_set_display_rules($qa_content, array(
@@ -76,11 +78,25 @@
                  'ami_gp_badge_show_owners'    => 'ami_show_gp_badge' ,
                  'ami_gp_badge_showtagline'    => 'ami_show_gp_badge' ,
                  'ami_gp_badge_width'          => 'ami_show_gp_badge' ,
+                 'ami_gp_badge_costum_header'          => 'ami_show_gp_badge_header' ,
             ));
 			return array(
 				'ok' => $saved ? qa_lang('gp_badge/settings_saved') : null,
-				
+				 
 				'fields' => array(
+                    'ami_show_gp_badge_header' => array(
+                        'label' => qa_lang('gp_badge/ami_show_gp_badge_header'),
+                        'tags'  => 'name="ami_show_gp_badge_header" id="ami_show_gp_badge_header"',
+                        'value' => qa_opt('ami_show_gp_badge_header'),
+                        'type'  => 'checkbox',
+                    ),
+                    'ami_gp_badge_costum_header' => array(
+                         'id' => 'ami_gp_badge_costum_header' ,
+                        'label' => qa_lang('gp_badge/ami_gp_badge_costum_header'),
+                        'type'  => 'text',
+                        'tags'  => 'name="ami_gp_badge_costum_header"',
+                        'value' => qa_opt('ami_gp_badge_costum_header'),
+                    ),
                     'ami_gp_badge_url' => array(
                         'label' => qa_lang('gp_badge/ami_gp_badge_url_lable'),
                         'type'  => 'text',
@@ -200,7 +216,9 @@
 		{
             $has_error     = false ; 
             $error_message = "" ;
-            $widget_opt    = qa_get_options(array('ami_show_gp_badge','ami_gp_badge_url','ami_gp_badge_type','ami_gp_badge_layout','ami_gp_badge_theme','ami_gp_badge_showcoverphoto','ami_gp_badge_showphoto','ami_gp_badge_show_owners','ami_gp_badge_showtagline','ami_gp_badge_width'));
+            $widget_opt    = qa_get_options(array('ami_show_gp_badge','ami_gp_badge_url','ami_gp_badge_type',
+                                                  'ami_gp_badge_layout','ami_gp_badge_theme','ami_gp_badge_showcoverphoto','ami_gp_badge_showphoto',
+                                                  'ami_gp_badge_show_owners','ami_gp_badge_showtagline','ami_gp_badge_width' , 'ami_gp_badge_costum_header' , 'ami_show_gp_badge_header'));
             $gp_url        = $widget_opt['ami_gp_badge_url'] ;  
             $show_gp_badge = $widget_opt['ami_show_gp_badge'] ;  
            
@@ -249,17 +267,26 @@
         if ($class = 'g-person') {
               $data['rel'] = 'data-rel="author"' ;
         }
-
+        if (!!$widget_opt['ami_show_gp_badge_header']) {
+          $widget_header = '<div class="gp-widget-header"><h3>'.$this->get_gp_settings($widget_opt , 'widget_header').'</h3></div>' ;
+        }else {
+              $widget_header = "" ;
+        }
+        
         $data_str = implode(' ', $data ) ;
         $gp_badge = '<div '.$data_str.'></div>'  ;
 
         ob_start();
             ?>
               <!--  widget start  -->
-                 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+                  <?php echo $widget_header ;?>
+                  <div class="gp-widget">
+                    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
                     <div class="google-plus clearfix">
                     <?php echo $gp_badge ;?>
                     </div>
+                  </div>
+                 
               <!--  widget ends  -->
             <?php
 
@@ -328,6 +355,10 @@
                             $value = $min_width ;
                       }
                       break;
+                 case 'widget_header':
+                      $value     = !empty($widget_opt['ami_gp_badge_costum_header']) ? $widget_opt['ami_gp_badge_costum_header'] : qa_lang('gp_badge/ami_gp_badge_default_header') ;
+                      break;
+
                 default:
                       break;
           }
