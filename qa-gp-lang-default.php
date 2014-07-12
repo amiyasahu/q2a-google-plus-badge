@@ -44,5 +44,5 @@ return array(
 	"b_show_stream_label"     => "Display a stream of the latest posts by the Page " ,
 	"b_like_box_height_label" => "Height of the box in pixels " ,
 	"b_like_box_width_label"  => "Width of the box in pixels " ,
-	"b_show_fb_like_box"      => "Show Facebook Like Box " ,
-	);
+	"show_gp_badge"      => "Show Google+ Badge " ,
+);
