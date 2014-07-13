@@ -44,7 +44,9 @@
 		exit;
 	}
 
+	define('AMI_GOOGLE_PLUS_DIR', dirname(__FILE__));
 
+	qa_register_plugin_module('module', 'qa-google-plus-badge-admin.php', 'q2a_google_plus_badge_admin', 'Google Plus Badge Admin');
 	qa_register_plugin_module('widget', 'qa-google-plus-badge.php', 'q2a_google_plus_badge', 'Google Plus Badge');
 	qa_register_plugin_phrases('qa-gp-lang-*.php', 'gp_badge');
 
