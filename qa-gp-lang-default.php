@@ -46,4 +46,5 @@ return array(
 	"ami_gp_show_owners_label"    => "Display a list of community owners (only applicable for communities )" ,
 	"ami_gp_showphoto_label"      => "Display the community profile photo if the photo exists (only applicable for communities )" ,
 	"gp_badge"                    => "Google+ Badge" ,
+	"save_changes"                => "Save Changes" ,
 );

@@ -201,7 +201,7 @@
 				
 				'buttons' => array(
       					array(
-      						'label' => 'Save Changes',
+      						'label' => qa_lang('gp_badge/save_changes'),
       						'tags' => 'name="'.self::SAVE_BUTTON.'"',
       					),
 				 ),
