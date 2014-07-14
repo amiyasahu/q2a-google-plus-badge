@@ -95,12 +95,12 @@
                     self::GPLUS_URL => array(
                         'label' => qa_lang('gp_badge/ami_gp_badge_url_lable'),
                         'type'  => 'text',
-                        'tags'  => 'name="ami_gp_badge_url"',
+                        'tags'  => 'name="'.self::GPLUS_URL.'"',
                         'value' => qa_opt(self::GPLUS_URL),
                     ),
                     self::SHOW_BADGE => array(
                         'label' => qa_lang('gp_badge/show_gp_badge'),
-                        'tags'  => 'name="ami_show_gp_badge" id="ami_show_gp_badge"',
+                        'tags'  => 'name="'.self::SHOW_BADGE.'" id="'.self::SHOW_BADGE.'"',
                         'value' => qa_opt(self::SHOW_BADGE),
                         'type'  => 'checkbox',
                     ),
@@ -108,7 +108,7 @@
                         'id' => self::BADGE_TYPE ,
                         'label' => qa_lang('gp_badge/ami_gp_badge_type_lable'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_type"',
+                        'tags'  => 'name="'.self::BADGE_TYPE.'"',
                         'value' => qa_opt(self::BADGE_TYPE),
                         'options' => array(
                               'g-person'    => 'g-person' ,
@@ -121,7 +121,7 @@
                         'id' => self::BADGE_LAYOUT ,
                         'label' => qa_lang('gp_badge/layout_label'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_layout"',
+                        'tags'  => 'name="'.self::BADGE_LAYOUT.'"',
                         'value' => qa_opt(self::BADGE_LAYOUT),
                         'options' => array(
                               'portrait'  =>'portrait' ,
@@ -133,7 +133,7 @@
                         'id' => self::BADGE_THEME ,
                         'label' => qa_lang('gp_badge/theme_label'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_theme"',
+                        'tags'  => 'name="'.self::BADGE_THEME.'"',
                         'value' => qa_opt(self::BADGE_THEME),
                         'options' => array(
                               'light' =>'light' ,
@@ -145,7 +145,7 @@
                         'id' => self::BADGE_SHOW_COVER ,
                         'label' => qa_lang('gp_badge/ami_gp_showcoverphoto_label'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_showcoverphoto"',
+                        'tags'  => 'name="'.self::BADGE_SHOW_COVER.'"',
                         'value' => qa_opt(self::BADGE_SHOW_COVER),
                         'options' => array(
                               'true'  => 'true' ,
@@ -157,7 +157,7 @@
                         'id' => self::SHOW_PHOTO ,
                         'label' => qa_lang('gp_badge/ami_gp_showphoto_label'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_showphoto"',
+                        'tags'  => 'name="'.self::SHOW_PHOTO.'"',
                         'value' => qa_opt(self::SHOW_PHOTO),
                         'options' => array(
                               'true'  => 'true' ,
@@ -169,7 +169,7 @@
                         'id' => self::SHOW_OWNERS ,
                         'label' => qa_lang('gp_badge/ami_gp_show_owners_label'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_show_owners"',
+                        'tags'  => 'name="'.self::SHOW_OWNERS.'"',
                         'value' => qa_opt(self::SHOW_OWNERS),
                         'options' => array(
                               'true'  => 'true' ,
@@ -181,7 +181,7 @@
                         'id' => self::SHOW_TAGLINE ,
                         'label' => qa_lang('gp_badge/showtagline_label'),
                         'type'  => 'select',
-                        'tags'  => 'name="ami_gp_badge_showtagline"',
+                        'tags'  => 'name="'.self::SHOW_TAGLINE.'"',
                         'value' => qa_opt(self::SHOW_TAGLINE),
                         'options' => array(
                                'true'  => 'true' ,
@@ -193,7 +193,7 @@
                         'id' => self::BADGE_WIDTH ,
                         'label' => qa_lang('gp_badge/ami_gp_badge_width_label'),
                         'type'  => 'text',
-                        'tags'  => 'name="ami_gp_badge_width"',
+                        'tags'  => 'name="'.self::BADGE_WIDTH.'"',
                         'value' => qa_opt(self::BADGE_WIDTH),
                     ),
 
