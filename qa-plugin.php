@@ -35,7 +35,7 @@
 	Plugin Author URI: http://www.amiyasahu.com/
 	Plugin License: GPLv2
 	Plugin Minimum Question2Answer Version: 1.6
-	Plugin Update Check URI: 
+	Plugin Update Check URI: https://raw.githubusercontent.com/amiyasahu/q2a-google-plus-badge/master/qa-plugin.php
 */
 
 
