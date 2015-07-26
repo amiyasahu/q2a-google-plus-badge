@@ -39,6 +39,7 @@
         const SHOW_TAGLINE = 'ami_gp_badge_showtagline';
         const BADGE_WIDTH = 'ami_gp_badge_width';
         const SAVE_BUTTON = 'gp_badge_save_btn';
+        const RESTORE_DEFAULTS_BUTTON = 'gp_badge_restore_defaults_btn';
 
         function allow_template( $template )
         {
@@ -64,20 +65,37 @@
         function admin_form( &$qa_content )
         {
             $saved = false;
+            $restored = false;
 
-            if ( qa_clicked( self::SAVE_BUTTON ) ) {
-                qa_opt( self::SHOW_BADGE, ! !qa_post_text( self::SHOW_BADGE ) );
-                qa_opt( self::GPLUS_URL, qa_post_text( self::GPLUS_URL ) );
-                qa_opt( self::BADGE_TYPE, qa_post_text( self::BADGE_TYPE ) );
-                qa_opt( self::BADGE_LAYOUT, qa_post_text( self::BADGE_LAYOUT ) );
-                qa_opt( self::BADGE_THEME, qa_post_text( self::BADGE_THEME ) );
-                qa_opt( self::BADGE_SHOW_COVER, qa_post_text( self::BADGE_SHOW_COVER ) );
-                qa_opt( self::SHOW_PHOTO, qa_post_text( self::SHOW_PHOTO ) );
-                qa_opt( self::SHOW_OWNERS, qa_post_text( self::SHOW_OWNERS ) );
-                qa_opt( self::SHOW_TAGLINE, qa_post_text( self::SHOW_TAGLINE ) );
-                qa_opt( self::BADGE_WIDTH, qa_post_text( self::BADGE_WIDTH ) );
-                $saved = true;
+            if ( qa_check_form_security_code( 'admin/gp-badge', qa_post_text( 'code' ) ) ) {
+                if ( qa_clicked( self::RESTORE_DEFAULTS_BUTTON ) ) {
+                    qa_opt( self::SHOW_BADGE, ! !$this->option_default( self::SHOW_BADGE ) );
+                    qa_opt( self::GPLUS_URL, $this->option_default( self::GPLUS_URL ) );
+                    qa_opt( self::BADGE_TYPE, $this->option_default( self::BADGE_TYPE ) );
+                    qa_opt( self::BADGE_LAYOUT, $this->option_default( self::BADGE_LAYOUT ) );
+                    qa_opt( self::BADGE_THEME, $this->option_default( self::BADGE_THEME ) );
+                    qa_opt( self::BADGE_SHOW_COVER, $this->option_default( self::BADGE_SHOW_COVER ) );
+                    qa_opt( self::SHOW_PHOTO, $this->option_default( self::SHOW_PHOTO ) );
+                    qa_opt( self::SHOW_OWNERS, $this->option_default( self::SHOW_OWNERS ) );
+                    qa_opt( self::SHOW_TAGLINE, $this->option_default( self::SHOW_TAGLINE ) );
+                    qa_opt( self::BADGE_WIDTH, $this->option_default( self::BADGE_WIDTH ) );
+                    $restored = true;
+                } elseif ( qa_clicked( self::SAVE_BUTTON ) ) {
+                    qa_opt( self::SHOW_BADGE, ! !qa_post_text( self::SHOW_BADGE ) );
+                    qa_opt( self::GPLUS_URL, qa_post_text( self::GPLUS_URL ) );
+                    qa_opt( self::BADGE_TYPE, qa_post_text( self::BADGE_TYPE ) );
+                    qa_opt( self::BADGE_LAYOUT, qa_post_text( self::BADGE_LAYOUT ) );
+                    qa_opt( self::BADGE_THEME, qa_post_text( self::BADGE_THEME ) );
+                    qa_opt( self::BADGE_SHOW_COVER, qa_post_text( self::BADGE_SHOW_COVER ) );
+                    qa_opt( self::SHOW_PHOTO, qa_post_text( self::SHOW_PHOTO ) );
+                    qa_opt( self::SHOW_OWNERS, qa_post_text( self::SHOW_OWNERS ) );
+                    qa_opt( self::SHOW_TAGLINE, qa_post_text( self::SHOW_TAGLINE ) );
+                    qa_opt( self::BADGE_WIDTH, qa_post_text( self::BADGE_WIDTH ) );
+                    $saved = true;
+                }
             }
+
+
             qa_set_display_rules( $qa_content, array(
                 self::BADGE_TYPE       => self::SHOW_BADGE,
                 self::BADGE_LAYOUT     => self::SHOW_BADGE,
@@ -90,7 +108,7 @@
             ) );
 
             return array(
-                'ok'      => $saved ? qa_lang( 'gp_badge/settings_saved' ) : null,
+                'ok'      => $saved ? qa_lang( 'gp_badge/settings_saved' ) : ( $restored ? qa_lang( 'gp_badge/settings_restored' ) : null ),
 
                 'fields'  => array(
                     self::GPLUS_URL        => $this->get_gp_url_field(),
@@ -105,6 +123,9 @@
                     self::BADGE_WIDTH      => $this->get_gp_badge_width_field(),
                 ),
                 'buttons' => $this->get_admin_buttons(),
+                'hidden'  => array(
+                    'code' => qa_get_form_security_code( 'admin/gp-badge' ),
+                ),
             );
         }
 
@@ -314,6 +335,10 @@
                 array(
                     'label' => qa_lang( 'gp_badge/save_changes' ),
                     'tags'  => 'name="' . self::SAVE_BUTTON . '"',
+                ),
+                array(
+                    'label' => qa_lang( 'gp_badge/restore_defaults' ),
+                    'tags'  => 'name="' . self::RESTORE_DEFAULTS_BUTTON . '"',
                 ),
             );
         }

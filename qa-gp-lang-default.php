@@ -34,6 +34,7 @@
     return array(
         "ur_google_page_url"          => "Page Url : The absolute URL of the Google Plus Page/Profile/Community that will be displayed . This is a required setting.",
         "settings_saved"              => "Google+ Badge settings has been saved ",
+        "settings_restored"           => "Google+ Badge settings has been restored ",
         "plz_provide_gp_url"          => "Please provide your Google+ Page/Profile/Community url to display on website ",
         "show_gp_badge"               => "Show Google+ Badge ",
         "ami_gp_badge_url_lable"      => "URL to the Google+ page",
@@ -47,4 +48,5 @@
         "ami_gp_showphoto_label"      => "Display the community profile photo if the photo exists (only applicable for communities )",
         "gp_badge"                    => "Google+ Badge",
         "save_changes"                => "Save Changes",
+        "restore_defaults"            => "Restore Defaults",
     );
